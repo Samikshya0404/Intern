@@ -18,6 +18,7 @@ from django.views.generic.detail import DetailView
 #     return render(request, 'j.html',
 #     {'all_items':all_todo_items})
 
+
 def todoappView(request):
     if request.method == 'GET':
         # <view logic>
@@ -55,6 +56,7 @@ class deleteTodoView(DeleteView):
     # url to redirect after successfully
     # deleting object
     success_url ="/"
+    template_name="todo_app/delete.html"
 
 # def update(request, id):
 #     todo = TodoListItem.objects.get(id=id)
@@ -72,24 +74,15 @@ class TodolistView(ListView):
     # specify the model for list view
     model = TodoListItem 
     template_name="todo_app/list.html"
-
-# class TodolistView(ListView):
-#     model = TodoListItem 
-#     template_name = "todo_app/index.html"
-#     context_object_name="test"
+    # def get_success_url(self):
+    #     return reverse('listr')
     
-# class TodoCreate(CreateView):
-#     model = TodoListItem
- 
-#     # specify the fields to be displayed
 
-#     fields = ['title', 'description']
-#     template_name="todo_app/create.html"
+
 
 #     def get_success_url(self):
 #         return reverse('test')
-# from django.views.generic.edit import CreateView
-# from .models import GeeksModel
+
  
 class TodoCreate(CreateView):
  
@@ -104,21 +97,24 @@ class TodoCreate(CreateView):
 class TodoDetails(DetailView):
     # specify the model to use
     model = TodoListItem
+    template_name="todo_app/detail.html"
+
     
 class TodoUpdate(UpdateView):
     # specify the model you want to use
     model = TodoListItem
-    template_name="todo_app/create.html"
- 
+    template_name="todo_app/update.html"
     # specify the fields
     fields = [
         "title",
         "description"
     ]
-    template_name="todo_app/update.html"
  
     # can specify success url
     # url to redirect after successfully
     # updating details
-    def get_success_url(self):
-        return reverse('test')
+    success_url ="/"
+ 
+    
+    # def get_success_url(self):
+    #     return reverse('test')

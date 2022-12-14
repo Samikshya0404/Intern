@@ -5,6 +5,8 @@
 # import the standard Django Model
 # from built-in library
 from django.db import models
+from django.urls import reverse
+
   
 # declare a new model with a name "GeeksModel"
 class TodoListItem(models.Model):
@@ -17,3 +19,6 @@ class TodoListItem(models.Model):
     # with their title name
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('listr')
